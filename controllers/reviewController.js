@@ -4,11 +4,7 @@ const ejs = require("ejs");
 const he = require("he")
 const reviewCont = {};
 
-/***********************************
- * Build reviews by inv_id
- * -use this if I want to load the inventory detail first and
- * -then load this second.  Needs AJAX
- ***********************************/
+
 reviewCont.buildReviewByInv_id = async function (req, res, next) {
   
   const inv_id = req.params.inv_id;

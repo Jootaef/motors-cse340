@@ -108,17 +108,13 @@ validate.checkRegData = async (req, res, next) => {
       account_firstname,
       account_lastname,
       account_email,
-      // we don't send the password back to the user
     });
     return;
   }
   next();
 };
 
-/* ***********************************
- * Check data and return errors
- * or continue to login ???
- *************************************/
+
 
 validate.checkLoginData = async (req, res, next) => {
   const { account_email } = req.body;
@@ -139,37 +135,32 @@ validate.checkLoginData = async (req, res, next) => {
   next();
 };
 
-/* **********************************
- * Update Account Info Validation Rules
- ************************************/
+
 
 validate.updateAccountInfoRules = () => {
   
   return [
-    // firstname is required and must be string
     body("account_firstname")
       .trim()
       .escape()
       .notEmpty()
       .isLength({ min: 1 })
-      .withMessage("Please provide a first name."), //on error this message is sent
+      .withMessage("Please provide a first name."), 
 
-    //lastname is required and must be string
     body("account_lastname")
       .trim()
       .escape()
       .notEmpty()
       .isLength({ min: 2 })
-      .withMessage("Please provide a last name."), //on error this message is sent
+      .withMessage("Please provide a last name."), 
 
-    // valid email is required and cannot already exist in the Database
     body("account_email")
       .trim()
       .escape()
       .notEmpty()
       .isEmail()
       .normalizeEmail()
-      .withMessage("Please provide a valid email.") //on error this message is sent
+      .withMessage("Please provide a valid email.") 
       .custom(async (account_email, { req }) => {        
         const account_id = req.body.account_id;        
         const emailExists = await accountModel.checkExistingEmailById(

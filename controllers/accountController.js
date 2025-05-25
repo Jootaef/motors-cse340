@@ -1,5 +1,4 @@
-/* Week 4 Login controller
- */
+
 const utilities = require("../utilities/");
 const accountModel = require("../models/account-model");
 const reviewModel = require("../models/review-model");
@@ -8,9 +7,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 
-/* **********************
- * Deliver login view
- *************************/
+
 
 async function buildLogin(req, res, next) {
   let nav = await utilities.getNav();
@@ -21,16 +18,13 @@ async function buildLogin(req, res, next) {
   });
 }
 
-/* ***************************
- * Deliver Registration view
- ****************************/
+
 
 async function buildRegister(req, res, next) {
   let nav = await utilities.getNav();
   res.render("account/register", {
     title: "Register",
     nav,
-    //need this.  EJS view could throw an error because "errors" variable is expected and not found
     errors: null,
   });
 }
@@ -230,7 +224,6 @@ async function changeAccountInfo(req, res) {
   const { account_firstname, account_lastname, account_email, account_id } =
     req.body;
 
-  // check to see if email already exists - Done in validation check rules
 
   // send to model to run sql update
   const reqResult = await accountModel.updateAccountInfo(
@@ -245,9 +238,7 @@ async function changeAccountInfo(req, res) {
     // in a while.
     const updatedAccountData = await accountModel.getAccountById(account_id);
 
-    //udpate jwt and cookie so that changed name is available elsewhere
     const accessToken = jwt.sign(
-      // accountData from getAccountById(),
       {
         account_id: updatedAccountData.account_id,
         account_firstname: updatedAccountData.account_firstname,
@@ -280,7 +271,6 @@ async function changeAccountInfo(req, res) {
   } else {
     req.flash("notice", "Sorry, the account information update failed.");
     // This is returning to account management page upon failure, should this return
-    // sticky values and return to the form?  It does in the validation checks.
     res.status(501).render("account/accounts", {
       title: "Account Management",
       nav,
@@ -301,9 +291,6 @@ async function changePassword(req, res) {
   const accountData = await accountModel.getAccountById(account_id);
 
   if (!accountData) {
-    // this shouldn't even happen, because the account_id is coming from the
-    // login data, but if it does, I need to know that it broke here.
-    // maybe on timeout?
     req.flash("notice", "Invalid account. Were you logged out?."); 
     res.render("account/login", {
       title: "Login",
