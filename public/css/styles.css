@@ -1,0 +1,623 @@
+/******* Change Box Model ***************/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --clr-light1: #EDF7D2;
+    --clr-light2: #F3E9D2;
+    --clr-light3: #ffdcac;
+    --clr-medium1: #F49E4C;
+    --clr-medium2: #88D498;
+    --clr-dark1: #353831;
+    --clr-dark2: #1d2d2a;
+    --clr-button1: var(--clr-medium1);
+    --clr-button2: #f68924;
+    --clr-button3: #fabf88;
+
+    --font-heading: "Noto Serif", serif;
+    --font-paragraph: "Roboto", serif;
+ } 
+
+ h1 {
+    color: var(--clr-dark1);
+    padding: 1rem;    
+ }
+
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+    font-family: var(--font-heading);
+    color: var(--clr-dark2)
+ }
+
+ p {
+    font-family: var(--font-paragraph);
+    color: var(--clr-dark1)
+ }
+
+ ul {
+    padding: .3rem;
+ }
+
+ a {
+    text-decoration: none;
+ }
+ 
+ button {
+  background: var(--clr-button1);
+  padding: 1rem;
+  font-weight: 700;
+  font-size: larger;  
+  padding: .3rem .7rem;
+  margin: 0 0 1rem 2%;
+  width: 96%;
+  max-width: 20rem;
+  border-radius: .5rem;
+  box-shadow: 0 5px #888;
+}
+
+button:hover {background-color: var(--clr-button2)}
+
+button:active {
+  background-color: var(--clr-button3);
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+
+ 
+/* Layout */
+/* main body div, wraps whole body */
+#wrapper {
+    background-color: var(--clr-light1);
+    width: 95%;
+    padding: .5rem;
+    
+    margin: 1rem auto;
+}
+
+.border {
+    border: 5px ridge var(--clr-medium2); 
+}
+
+/* -------------Header------ */
+/* #top-header { */
+    /*  */
+/* } */
+
+.siteName {
+    font-family: var(--font-paragraph);
+    font-size: 2rem;
+    font-weight: 600;
+    
+}
+.siteName a {
+    color: var(--clr-dark1);
+}
+
+#tools {
+    float: right;
+}
+
+/* ------Navigation------------ */
+
+.navigation {
+    background-color: var(--clr-dark2);    
+    text-align: center;
+    
+}
+
+.navigation ul {    
+    display: flex;
+    justify-content: center;    
+}
+
+.navigation ul li {    
+    list-style: none;
+    padding: .2rem .5rem;    
+}
+
+/* When links are added */
+.navigation a {    
+    font-size: 0.8rem; 
+    font-weight: 400;    
+    color: var(--clr-light1);
+}
+
+.navigation a:hover {
+    background-color: var(--clr-light2);
+    color: var(--clr-dark2);
+    font-weight: 700;
+}
+
+/* Class .active not used week 3 dynamic code changes ? */
+.active {
+    padding: 10px;
+    border: 2px solid var(--clr-medium1);
+} 
+
+/* ----------Main------------ */
+
+main {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* --------Hero-------------- */
+
+.hero {
+    position: relative;
+    min-height: 300px;
+    background-color: white;
+    overflow: hidden;
+    width: 100%;
+}
+
+.hero img {
+    width: 65%;
+    /* overflow: hidden; */
+    object-fit: cover;
+    margin: 3rem 0 0 6.5rem;
+}
+
+.hero h1 {
+    position: absolute;
+    text-align: left;
+    top: 0px;
+    font-size: 1.3rem;
+}
+
+#main-float-card {
+    position: absolute;
+    top: 3rem;
+    left: 1rem;
+    padding: .5rem;    
+    background: rgb(255,255,255,.7);    
+    
+}
+#main-float-card h2 {
+    font-size: 1.1rem;
+}
+
+#main-float-card ul li {
+    list-style: none;
+    font-family: var(--font-heading);   
+    font-weight: 700;
+    color: var(--clr-dark2);  
+    
+}
+
+/* --------------Grid-Pair----------------- */
+
+
+.grid-column {
+    display: grid;
+    /* grid-template-columns: repeat(2,1fr); */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.child {
+    padding: .5rem;
+    order: 0;
+}
+
+.card {
+    text-align: center;
+}
+.card div {
+    background-color: var(--clr-medium2);
+    height: 5rem;
+    /* padding: 1rem; */
+    /* margin: auto; */
+}
+
+.reviews {
+    order: -1;
+}
+
+.reviews ul{
+    padding: .4rem;
+}
+.reviews ul li {
+    padding: .2rem;
+}
+
+/* ********** Vehicle View****** */
+#inv-display {
+    display: grid; 
+    gap: 1rem; 
+    padding: 0;
+    list-style: none;
+    /* justify-content: center;  */
+    justify-items: center;
+    place-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));    
+    margin: 0 auto;         
+    
+}
+
+#inv-display li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--clr-light1);
+    border: 1px solid var(--clr-medium2);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+    max-width: 300px;    
+}
+
+#inv-display img {
+    width: 100%;
+    height: auto;
+    /* height: 200px; */
+    /* object-fit: cover; */
+    border-radius: 4px;
+}
+
+/* Name and price container */
+.namePrice {
+    margin-top: 1rem;
+}
+  
+.namePrice h2 {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+}
+  
+.namePrice span {
+    font-size: 1rem;
+    color: var(--clr-dark2);
+    font-weight: bold;
+}
+
+.notice {
+    font-size: 2rem;
+    color: var(--clr-medium2);
+}
+
+.vehicleView {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.imgContainer {
+    overflow: hidden;
+}
+
+.imgContainer img {
+    display: block;
+    max-width: 100%;        
+    height: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.vehicleDetails > *:nth-child(odd) {
+    background-color: var(--clr-light1); /* Light gray for odd items */
+    padding: 1rem;
+}
+
+.vehicleDetails > *:nth-child(even) {
+    background-color: var(--clr-light2); /* White for even items */
+}
+
+.vehicleDetails {
+    margin: 2rem;
+}
+
+.bold {
+    font-weight: 900;
+    color: var(--clr-dark1);
+}
+
+/* ************* Error ************** */
+.error {
+    overflow: hidden;
+    position: relative;   
+}
+
+.error * {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.error img {
+    display: block;
+    max-width: 80%;            
+    object-fit: contain;
+    /* opacity: 0.5; */
+}
+
+.error h2 {
+    /* position: absolute; */
+    /* top: 50px; */
+    font-size: medium;
+}
+
+/* #messages ul li, */
+.notice li {
+    /* text-shadow: 0px 2px 2px #282828; */
+    font: 2rem;
+    list-style: none;
+    color: var(--clr-medium1);
+    -webkit-text-stroke: .5px #67421f;
+}
+
+/*------------Forms----------- */
+.form-container {
+    margin: 0 auto;
+    max-width: 600px;
+    /* font-size: 1.5rem; */
+}
+
+.form {
+    background-color: var(--clr-medium2);
+    color: var(--clr-dark2);    
+}
+.form div {
+    padding-left: 2rem;
+}
+
+.required {
+    text-align: right;
+    font-size: .7rem;    
+    padding-top: 1rem;
+    padding-right: 1rem;    
+}
+
+.form label {
+    display: block;
+    padding: 1rem;
+    font-size: 1.7rem;
+}
+
+.top textarea,
+.top select,
+.top input {
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    max-width: 500px;    
+    border-radius: 5px;
+    color: var(--clr-dark2);
+    font-size: 1.4rem;
+}
+
+#inv_description:required:invalid, #inv_description:focus:invalid, 
+select:required:invalid, select:focus:invalid,
+input:required:invalid, input:focus:invalid {
+    background-color: var(--clr-light3);
+}
+
+#inv_description:required:valid, 
+select:required:valid,
+input:required:valid {
+    background-color: white ;
+}
+
+.pwd-list {
+    list-style:circle;
+    padding-left: 3rem;    
+}
+
+.submitBtn {
+    border: none;
+    background-color: var(--clr-button1);
+    color: var(--clr-dark2);
+    font-weight: 600;
+    font-size: larger;
+    border-radius: 1rem;
+    padding: .75rem 1.5rem;
+    margin: 0 0 2rem 2%;
+    width: 96%;
+    max-width: 20rem;
+    box-shadow: 0 5px #888;
+}
+.submitBtn:hover {background-color: var(--clr-button2)}
+
+.submitBtn:active {
+  background-color: var(--clr-button3);
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+
+
+/* -----Management Views--- */
+.manageLinks {
+    margin-left: 2rem;
+}
+
+
+.manageLinks a {
+    /* color: var(--clr-dark1); */
+    text-decoration: underline;
+}
+
+.formMessage {
+    font-size: 1.4rem;
+    font-style: italic;
+}
+
+
+/* Reviews section */
+.reviews-title {
+    padding: 1rem;
+    font-weight: 700;
+}
+
+.reviews-div {
+    margin-left: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.reviews-list-div {
+    padding: .5rem;
+}
+
+.no-reviews {
+    /* font-weight: 500; */
+    font-style: italic;
+}
+
+.reviews-list-inv li {
+    font-size:large;
+}
+
+.review-auth {
+    font-weight: 700;
+}
+
+.reviews-byAccount {
+    padding: 1rem;
+}
+
+/* Footer */
+
+footer {
+    padding: 1rem;
+}
+
+
+
+/* media query */
+
+@media screen and (min-width: 670px) {
+    h3 {
+        font-size: 1rem;
+    }
+
+    button {
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+   }
+
+    body {
+        background-image: url("/images/site/small_check.jpg");
+    }
+
+    #wrapper {
+        /* background-color: var; */
+        width: 80%;
+        margin: 1rem auto;
+        
+    }
+
+    .siteName {        
+        font-size: 3rem;       
+    }    
+
+    .navigation ul li {
+        
+        padding: 1rem;
+    }
+
+    .navigation a {
+        font-size: 1.5rem; 
+        font-weight: 500;       
+    }
+    
+    main {
+        width: 100%;
+    }
+
+    .hero img {        
+        width: 85%;
+        margin: 3rem 0 0 4.5rem;
+    }
+
+    .hero h1 {        
+        font-size: 2rem;
+    }
+
+    #main-float-card ul li {
+        font-size:  1rem;
+     }
+
+     #main-float-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .grid-column{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        
+    }
+
+    .reviews {
+        order: 1;
+    }
+    .reviews ul li {
+        padding: .5rem;        
+    }   
+
+    .required {        
+        font-size: 1.1rem;               
+    }
+    
+    /* #inv-display {
+        grid-template-columns: repeat(2, 1fr); 
+      } */
+}
+
+@media screen and (min-width: 760px) {
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .hero img {        
+        margin: 1rem 0 0 2rem;
+        width: 90%;
+    }
+    
+    .reviews ul{
+        padding: 2rem;
+    }
+
+    /* #inv-display {
+        grid-template-columns: repeat(3, 1fr); 
+      } */
+
+      .namePrice span {
+        font-size: 1.2rem;       
+    }
+
+    
+    .imgContainer img {
+        padding: 0 2rem;
+    }
+
+    .error img {
+        max-height: 50vh;
+    }
+
+    .error h2 {      
+        font-size: large;
+        left: 50px;
+    }
+}

@@ -1,0 +1,15 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %> 
+<%# messages() %> 
+<%- vehicleView %> 
+<div class="reviews-title">
+    <h2><%- reviewTitle %></h2>
+    <hr>
+</div>
+<div class="reviews-div">
+    <%- reviewList%> 
+</div>
+<div class="add-review">
+    <%- addReview %>
+</div>

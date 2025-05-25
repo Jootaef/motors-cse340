@@ -1,0 +1,70 @@
+<h1><%= title %></h1>
+<%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<div class="form-container border">
+    
+    <form
+    id="deleteVehicleForm"
+    method="post"
+    <%# action route needs to match the router.post route in routes folder %>
+    action="/inv/delete" class="form" >    
+    <label for="inv_make" class="top"
+      >Vehicle Make
+      <input
+        type="text"
+        name="inv_make"
+        id="inv_make"
+        required
+        placeholder="-min. 3 characters"
+        value="<%= locals.inv_make %>"
+        readonly
+      />
+    </label>
+    <label for="inv_model" class="top"
+      >Vehicle Model
+      <input
+        type="text"
+        name="inv_model"
+        id="inv_model"
+        required
+        placeholder="-min. 3 characters"
+        value="<%= locals.inv_model %>"
+        readonly
+      />
+    </label>
+    <label for="inv_year" class="top"
+      >Vehicle Year (YYYY)
+      <input
+        type="text"
+        name="inv_year"
+        id="inv_year"
+        required
+        placeholder="4 digit year"
+        value="<%= locals.inv_year %>"
+        readonly
+      />
+    </label>
+    <label for="inv_price" class="top"
+      >Vehicle Price
+      <input
+        type="number"
+        name="inv_price"
+        id="inv_price"
+        required
+        placeholder="decimal or integer"
+        value="<%= locals.inv_price %>"
+        readonly
+      />
+    </label>
+    <p>Confirm Deletion - The delete is permanent.</p>
+    <input type="submit" value="Delete Vehicle" class="submitBtn" />
+    <input type="hidden" name="inv_id" <% if (locals.inv_id) { %> 
+        value="<%= locals.inv_id %>" <% } %>>
+  </form>
+</div>

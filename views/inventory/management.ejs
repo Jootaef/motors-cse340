@@ -1,0 +1,19 @@
+<h1><%= title %></h1>
+<%- messages() %>
+<% if (errors) { %>
+<ul class="notice">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %>
+<div class="manageLinks">    
+    <h2><a href="./add-classification" title="Click to add new classification">Add New Classification</a></h2>
+    <h2><a href="./add-vehicle" title="Click to add new vehicle">Add New Vehicle</a></h2>
+    <h2>Manage Inventory</h2>
+    <p>Select a classification from the list to see the items belonging to the classification.</p>
+    <%- classificationSelect %>
+    <table id="inventoryDisplay"></table>
+    <noscript>Javascript must be enabled to use this page.</noscript>
+</div> 
+<script src="../../js/inventory.js"></script>

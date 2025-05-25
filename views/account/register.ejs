@@ -1,0 +1,67 @@
+<h1><%= title %></h1>
+<%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<div class="form-container border">
+  <form method="post" action="/account/register" class="form">
+    <div class="required">All fields are required</div>
+    <label for="account_firstname" class="top"
+      >First Name
+      <input
+        type="text"
+        name="account_firstname"
+        id="account_firstname"
+        required
+        value="<%= locals.account_firstname %>"
+      />
+    </label>
+    <label for="account_lastname" class="top"
+      >Last Name
+      <input
+        type="text"
+        name="account_lastname"
+        id="account_lastname"
+        required
+        value="<%= locals.account_lastname %>"
+      />
+    </label>
+    <label for="account_email" class="top"
+      >Email
+      <input
+        type="email"
+        name="account_email"
+        id="account_email"
+        required
+        placeholder="myemail@somewhere.com"
+        value="<%= locals.account_email %>"
+      />
+    </label>
+    <label for="account_password" class="top"
+      >Password*
+      <input
+        type="password"
+        name="account_password"
+        id="account_password"
+        required
+        placeholder="***********"
+        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+      />
+    </label>
+    <div>
+      <h2>*Password must be:</h2>
+      <ul class="pwd-list">
+        <li>a minumum of 12 characters</li>
+        <li>contain at least one capital letter</li>
+        <li>contain at least one lowercase letter</li>
+        <li>contain at least one number</li>
+        <li>contain at least non-alphanumeric character</li>
+      </ul>
+    </div>
+    <input type="submit" value="Register" class="submitBtn" />
+  </form>
+</div>

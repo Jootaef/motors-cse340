@@ -1,0 +1,31 @@
+<h1><%= title %></h1>
+<%- messages() %>
+<div class="form-container border">
+  <form id="loginForm" method="post" action="/account/login" class="form">
+    <div class="required">All fields are required</div>
+    <label for="account_email" class="top"
+      >Email
+      <input
+        type="email"
+        name="account_email"
+        id="account_email"
+        required
+        placeholder="myemail@somewhere.com"
+        value="<%= locals.account_email %>"
+      />
+    </label>
+    <label for="account_password" class="top"
+      >Password
+      <input
+        type="password"
+        name="account_password"
+        id="account_password"
+        required
+        placeholder="***********"
+        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+      />
+    </label>
+    <input type="submit" value="Login" class="submitBtn" />
+    <h2>No Account? <a href="./register">Sign Up</a></h2>
+  </form>
+</div>
