@@ -9,13 +9,10 @@ reviewCont.buildReviewByInv_id = async function (req, res, next) {
   
   const inv_id = req.params.inv_id;
 
-  //call the model to get the data for reviews
   const reviewData = await reviewModel.getReviewByInv_id(inv_id);
   
-  // build list html
   const reviewList = await utilities.buildReviewListByInv_id(reviewData);
   let addReview = "";
-  // check login, if logged in add a form to add a review
   if (res.locals.loggedin) {
     
     const data = {
@@ -24,7 +21,6 @@ reviewCont.buildReviewByInv_id = async function (req, res, next) {
     };
     addReview = await ejs.renderFile("./views/reviews/add-form.ejs", data);
 
-    //addReview = ejs.renderFile('.review/add-form', data)
   } else {   
     addReview =
       '<p>You must first <a href="/account/login">login</a> to write a review.</p>';
@@ -38,14 +34,11 @@ reviewCont.buildReviewByInv_id = async function (req, res, next) {
   });
 };
 
-/***********************************
- * add new review to the database
- * or return on error
- ***********************************/
+
 reviewCont.processAddReview = async function (req, res) {
   const { inv_id, account_id, review_text } = req.body;
   
-  //update database with model
+
   try {
     const newReview = await reviewModel.addReview(
       review_text,
@@ -57,14 +50,11 @@ reviewCont.processAddReview = async function (req, res) {
     }
   } catch {
     req.flash("notice", "Sorry, the review was not added.");
-    //just go back to route and reload the vehicle page anyway
     return res.redirect(`/inv/detail/${inv_id}`);
   }
 };
 
-/***********************************
- * Build update/edit review View
- ***********************************/
+
 reviewCont.buildEditReviewView = async function (req, res) {
   let nav = await utilities.getNav();
   const review_id = req.params.review_id;
@@ -77,11 +67,9 @@ reviewCont.buildEditReviewView = async function (req, res) {
   );
   const account_firstname = matchedReview.account_firstname;
 
-  // get screen name
   const screen_name =
     account_firstname.charAt(0).toUpperCase() + matchedReview.account_lastname;
 
-  // get make model and year for title
   const vehicleName = `${reviewData[0].inv_year} ${reviewData[0].inv_make} ${reviewData[0].inv_model}`;
 
   res.render("./reviews/edit-review", {
@@ -97,9 +85,7 @@ reviewCont.buildEditReviewView = async function (req, res) {
   });
 };
 
-/*******************************************
- *  Process update/edit review
- *******************************************/
+
 
 reviewCont.processUpdateReview = async function (req, res) {
   
@@ -112,16 +98,12 @@ reviewCont.processUpdateReview = async function (req, res) {
     res.redirect("/account");
   } else {
     
-    //rebuild edit review form    
     let nav = await utilities.getNav();
 
-    //returns array of reviews for account
     const reviewData = await reviewModel.getReviewByAccount_id(account_id);
     
-    //returns object matching review_id
     const matchedReview = reviewData.find((review) => review.review_id === parseInt(review_id));
     
-    // get make model and year for title
     const vehicleName = `${matchedReview.inv_year} ${matchedReview.inv_make} ${matchedReview.inv_model}`;
 
     req.flash("notice", `Sorry, the update failed.`);
@@ -138,9 +120,6 @@ reviewCont.processUpdateReview = async function (req, res) {
   }
 };
 
-/***********************************
- * Build delete review form view
- ***********************************/
 reviewCont.buildDeleteReviewView = async function (req, res) {
   
   let nav = await utilities.getNav();
@@ -153,7 +132,6 @@ reviewCont.buildDeleteReviewView = async function (req, res) {
   
   const vehicleName = `${matchedReview.inv_year} ${matchedReview.inv_make} ${matchedReview.inv_model}`;
 
-  // get data to be passed to view
   const screen_name =
   matchedReview.account_firstname.charAt(0).toUpperCase() + matchedReview.account_lastname;
 
@@ -172,9 +150,7 @@ reviewCont.buildDeleteReviewView = async function (req, res) {
   
 };
 
-/***********************************
- * Process review deletion
- ***********************************/
+
 
 reviewCont.processDeleteReview = async function (req, res) {
   
