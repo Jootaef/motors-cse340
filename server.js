@@ -23,7 +23,7 @@ const accountRoutes = require("./routes/accountRoute");
 const reviewRoutes = require("./routes/reviewRoute");
 const homeController = require("./controllers/baseController");
 
-/* ===== View Engine Config ===== */
+/* ===== View Engine Configuration ===== */
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.set("layout", "./layouts/layout");
@@ -54,7 +54,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(utils.checkJWTToken);
 
-/* ===== Routes Setup ===== */
+/* ===== Route Setup ===== */
 app.use(staticRoutes);
 app.get("/", utils.handleErrors(homeController.buildHome));
 app.use("/inv", inventoryRoutes);
@@ -63,17 +63,17 @@ app.use("/reviews", reviewRoutes);
 
 /* ===== 404 Handler ===== */
 app.use((req, res, next) => {
-  next({ status: 404, message: "Página no encontrada." });
+  next({ status: 404, message: "Page not found." });
 });
 
-/* ===== Error Handler ===== */
+/* ===== General Error Handler ===== */
 app.use(async (err, req, res, next) => {
   const nav = await utils.getNav();
   const status = err.status || 500;
   const message =
     status === 404
       ? err.message
-      : `Error ${status}: Algo salió mal en el servidor.`;
+      : `Error ${status}: Something went wrong on the server.`;
 
   res.status(status).render("errors/error", {
     title: `Error ${status}`,
@@ -82,10 +82,10 @@ app.use(async (err, req, res, next) => {
   });
 });
 
-/* ===== Server Start ===== */
-const PORT = process.env.PORT || 3000; // Usa mayúsculas si vas a llamarlo como PORT después
-const HOST = process.env.HOST || "0.0.0.0"; // Para Render debe ser 0.0.0.0
+/* ===== Start Server ===== */
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || "0.0.0.0";
 
 app.listen(PORT, HOST, () => {
-  console.log(`Servidor en funcionamiento en http://${HOST}:${PORT}`);
+  console.log(`Server running at http://${HOST}:${PORT}`);
 });
