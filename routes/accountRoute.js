@@ -1,5 +1,4 @@
-/* Week 4 Add Login Route to be used with login
- */
+
 const express = require("express");
 const router = new express.Router();
 const accountController = require("../controllers/accountController");

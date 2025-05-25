@@ -10,13 +10,13 @@
 }
 
 :root {
-    --clr-light1: #EDF7D2;
+    --clr-light1: #ffffff;
     --clr-light2: #F3E9D2;
     --clr-light3: #ffdcac;
     --clr-medium1: #F49E4C;
-    --clr-medium2: #88D498;
-    --clr-dark1: #353831;
-    --clr-dark2: #1d2d2a;
+    --clr-medium2: #1d87e3;
+    --clr-dark1: #003366;
+    --clr-dark2: #003366;
     --clr-button1: var(--clr-medium1);
     --clr-button2: #f68924;
     --clr-button3: #fabf88;
@@ -312,12 +312,12 @@ main {
 }
 
 .vehicleDetails > *:nth-child(odd) {
-    background-color: var(--clr-light1); /* Light gray for odd items */
+    background-color: var(--clr-light1); 
     padding: 1rem;
 }
 
 .vehicleDetails > *:nth-child(even) {
-    background-color: var(--clr-light2); /* White for even items */
+    background-color: var(--clr-light2); 
 }
 
 .vehicleDetails {
