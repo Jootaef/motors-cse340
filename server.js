@@ -83,11 +83,9 @@ app.use(async (err, req, res, next) => {
 });
 
 /* ===== Server Start ===== */
-const port = process.env.PORT || 3000;
-const host = process.env.HOST || "localhost";
+const PORT = process.env.PORT || 3000; // Usa mayúsculas si vas a llamarlo como PORT después
+const HOST = process.env.HOST || "0.0.0.0"; // Para Render debe ser 0.0.0.0
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Servidor en funcionamiento en http://0.0.0.0:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Servidor en funcionamiento en http://${HOST}:${PORT}`);
 });
-
-
