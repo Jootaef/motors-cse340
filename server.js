@@ -86,6 +86,7 @@ app.use(async (err, req, res, next) => {
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || "localhost";
 
-app.listen(port, host, () => {
-  console.log(`Servidor en funcionamiento en http://${host}:${port}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor en funcionamiento en http://0.0.0.0:${PORT}`);
 });
+
